@@ -11,3 +11,27 @@ qiime2-pipeline/
 └── results/               # Example outputs (.qza, .qzv)
 
 
+qiime tools import --type EMPSingleEndSequences \
+  --input-path emp-single-sequences \
+  --output-path emp-single-sequences.qza
+📌 This converts raw EMP-style FASTQ files into a QIIME 2 artifact.
+
+Step 2: Tabulate metadata
+qiime metadata tabulate \
+  --m-input-file sample-metadata.tsv \
+  --o-visualization sample-metadata-viz.qzv
+📌 This checks and visualizes your metadata file.
+Step 3: Demultiplex sequences
+qiime demux emp-single \
+  --i-seqs emp-single-sequences.qza \
+  --m-barcodes-file sample-metadata.tsv \
+  --m-barcodes-column barcode-sequence \
+  --o-per-sample-sequences demux.qza \
+  --o-error-correction-details demux-details.qza
+📌 This separates reads into samples using barcodes and corrects errors.
+
+Step 4: Visualize demultiplexing
+qiime demux summarize \
+  --i-data demux-details.qza \
+  --o-visualization demux-details.qzv
+📌 This produces a .qzv file you can open in QIIME 2 View.

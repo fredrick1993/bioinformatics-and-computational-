@@ -1,0 +1,13 @@
+qiime2-pipeline/
+│
+├── README.md              # Main explanation of your pipeline
+├── environment.yml        # Conda environment file (optional)
+├── data/                  # Example input files (or links to public data)
+├── scripts/               # Bash scripts with your one-liners
+│   ├── 01_import.sh
+│   ├── 02_metadata.sh
+│   ├── 03_demux.sh
+│   └── 04_visualize.sh
+└── results/               # Example outputs (.qza, .qzv)
+
+
